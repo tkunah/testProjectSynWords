@@ -1,0 +1,25 @@
+<main>
+  <section class="textarea-section">
+    <div class="buttons-section">
+      <button class="btn" (click)="synonymFind()">Find synonym</button>
+      <button class="btn" (click)="copyText(textArea)">Copy text</button>
+    </div>
+    <textarea [(ngModel)]="text" (input)="onTextareaChange()" (mouseup)="getSelectedText(textArea)"
+  (keyup)="getSelectedText(textArea)" name="teatarea" #textArea placeholder="Type text..."></textarea>
+    <p>Words quantity: {{wordsQuantity}}</p>
+    <p>Symbols quantity: {{symbolsQuantity}}</p>
+  </section>
+  <section class="results-section">
+    <ul>
+      @if (!synList.length) {
+        <li>No synonyms found</li>
+      }
+      @for (word of synList; track word) {
+        <li>
+          <a (click)="changeWord(word.word)">{{word.word}}</a>
+        </li>
+      }
+    </ul>
+  </section>
+</main>
+
